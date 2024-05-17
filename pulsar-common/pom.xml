@@ -204,6 +204,15 @@
     <dependency>
       <groupId>com.google.protobuf</groupId>
 	  <artifactId>protobuf-java</artifactId>
+
+      <!--
+        ProtoBuf is shaded and not changed from the original com.google.protobuf package
+        since commit b0945d1d45d1e911d24151a23cf284e476203ba7 when this dependence was added.
+        The presence of com.google.protobuf.* relocation exclusion in pulsar-client-admin-shaded module
+        has no effect determining if the above happens or not. Thus, removing it does not remove the ProtoBuf classes
+        from the shaded jar. Making the dependency provided fixed it.
+       -->
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
